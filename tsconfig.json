@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules",
+        "options": { "goToDefinition": true }
+      }
+    ],
+    "rootDir": "./",
+    "jsxFragmentFactory": "Fragment",
+    "jsx": "react",
+    "jsxFactory": "h",
+    "esModuleInterop": true,
+    "allowJs": true,
+    "noEmit": true,
+    "module": "commonjs",
+    "strictNullChecks": true,
+    "strict": true,
+    "target": "ES2022",
+    "lib": ["es2022", "DOM"],
+    "noImplicitAny": true,
+    "removeComments": true,
+    "inlineSourceMap": true,
+    "skipLibCheck": true,
+    "paths": {
+      "react": ["./node_modules/preact/compat/"],
+      "react-dom": ["./node_modules/preact/compat/"]
+    },
+    "resolveJsonModule": true
+  },
+  "include": ["./src/**/*", "src/declaration.d.ts"]
+}

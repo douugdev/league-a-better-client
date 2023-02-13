@@ -1,0 +1,386 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+img[src*="/lol-game-data/assets/content/src/LeagueClient/GameModeAssets/Classic_SRU/img/parties-background.jpg"] {
+  content: url("//assets/img/space-bg.jpg");
+  object-fit: cover;
+  position: absolute;
+  height: 100% !important;
+  bottom: -100px;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+div > span,
+.main-navigation-menu-item,
+:host(lol-uikit-navigation-bar[type=nav-bar]) .section,
+:host(lol-uikit-navigation-bar[type=nav-bar-secondary]) .section,
+:host(lol-uikit-navigation-bar[type=nav-bar]),
+:host(lol-uikit-navigation-bar[type=nav-bar-secondary]),
+.main-nav-bar,
+#ember8596 *,
+*,
+:host > *,
+.parties-status-card-header-text {
+  --font-display: "Red Hat Display";
+  --font-body: "Red Hat Display";
+  font-family: "Red Hat Display", sans-serif !important;
+  text-transform: none !important;
+}
+
+#rcp-fe-lol-home-error,
+.achievement-token-container,
+.achievement-token-container .section,
+.parties-footer-warning,
+.social-leaderboard-button-container,
+.bug-report-button {
+  display: none !important;
+}
+
+/* Based on "ElainaV2" by Elaina Da Catto (Meow~~~) (<- Very important message) */
+iframe html {
+  background: transparent !important;
+}
+
+iframe .bg-cover {
+  opacity: 0 !important;
+}
+
+lol-uikit-section[section-id=lunar-revel-embed-2023] {
+  opacity: 0 !important;
+  visibility: hidden;
+}
+
+lol-uikit-navigation-item[item-id=lunar-revel-embed-2023] {
+  display: none !important;
+}
+
+.lol-social-sidebar.ember-view {
+  background: transparent !important;
+}
+
+#rcp-fe-lol-home-error {
+  display: none !important;
+}
+
+.rcp-fe-viewport-sidebar {
+  background: linear-gradient(rgb(6, 6, 6), rgba(0, 0, 0, 0.25)) !important;
+}
+
+.store-backdrop {
+  background-image: unset !important;
+}
+
+.friend-requests {
+  background: rgb(66, 63, 53) !important;
+}
+
+.navigation-root-component.ember-view {
+  background: linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0.24)) !important;
+}
+
+.alpha-version-panel {
+  background: linear-gradient(rgba(0, 0, 0, 0.38), rgba(38, 78, 52, 0.34)) !important;
+}
+
+lol-social-avatar[ref=iconElement],
+.lol-social-identity.ember-view > .details {
+  z-index: 1;
+}
+
+.menu-item-icon {
+  background-color: #fff1f1 !important;
+  color: #fff1f1 !important;
+}
+
+.main-navigation-menu .section .section-text {
+  color: #fff1f1 !important;
+}
+
+.summoner-level {
+  color: #ffe8a5 !important;
+}
+
+.alpha-tag {
+  color: rgba(255, 255, 255, 0.7882352941) !important;
+}
+
+lol-social-roster-member .offline .member-name {
+  color: #9a9696 !important;
+}
+
+.availability-icon {
+  position: relative !important;
+}
+
+.availability-icon.chat {
+  background: #09a646;
+}
+
+.filled.xp-ring {
+  background: linear-gradient(rgb(255, 236, 236), rgba(87, 103, 105, 0.48)) !important;
+}
+
+lol-uikit-navigation-item > .section::after {
+  background-image: linear-gradient(0deg, rgba(210, 195, 149, 0.32) 0%, rgba(0, 0, 0, 0.1) 55%);
+}
+
+.lol-loading-screen-container.lol-loading-screen-default-state {
+  backdrop-filter: blur(15px);
+  background: transparent !important;
+}
+
+.parties-background.ember-view .lol-uikit-background-switcher-image {
+  filter: invert(0.2) blur(30px);
+  opacity: 0.4;
+}
+
+.parties-background {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.26) 0%, rgba(0, 0, 0, 0) 50%, rgba(90, 27, 62, 0.2) 100%);
+}
+
+.lobby-header-overlay {
+  background: unset !important;
+}
+
+.parties-game-section.use-animation > .parties-game-info-panel-bg-container > video {
+  filter: saturate(0.5) brightness(1) invert(1) hue-rotate(27deg);
+}
+
+.parties-game-search-info {
+  color: #000000 !important;
+}
+
+.parties-game-search-elapsed {
+  color: white !important;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.parties-status-card-bg-container video {
+  filter: saturate(0.5) brightness(1) invert(1) hue-rotate(27deg);
+}
+
+.challenge-banner-title-container {
+  color: #f3d3d3;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.parties-status-member-icons > .parties-status-member-joined {
+  filter: grayscale(1) saturate(0) brightness(0.5);
+}
+
+.collections-application {
+  background: rgba(29, 72, 56, 0.18) !important;
+}
+
+.item-sets-table-row {
+  background: rgba(0, 0, 0, 0.4784313725);
+}
+
+#background-ambient {
+  src: none;
+  display: none;
+}
+
+.inventory-search {
+  background: rgba(0, 0, 0, 0.5215686275) !important;
+}
+
+.emote-item-icon.interactive {
+  background: rgba(0, 0, 0, 0.6901960784);
+}
+
+.uikit-background-switcher .lol-uikit-background-switcher-image.transition.fade {
+  animation: unset !important;
+}
+
+.background {
+  background-image: unset !important;
+}
+
+.stats-backdrop {
+  opacity: 0.3 !important;
+  mix-blend-mode: difference;
+}
+
+html {
+  overflow: hidden;
+}
+
+.loot-backdrop {
+  height: 720px;
+}
+
+.loading-tab::after {
+  background-image: none !important;
+}
+
+.store-loading {
+  background-color: transparent !important;
+}
+
+.clash-aram-intro-modal {
+  background-image: none !important;
+  background-color: transparent !important;
+}
+
+.champ-select-bg-darken {
+  opacity: 0.2 !important;
+}
+
+.champion-select {
+  background: transparent !important;
+}
+
+.champion-select .champion-splash-background .background-vignette-container.defocussed > .champ-select-bg {
+  opacity: 0;
+}
+
+.champion-select .timer-status::before {
+  filter: contrast(0) brightness(1);
+}
+
+.champion-select .action-button-container::after {
+  filter: sepia(1);
+}
+
+.rcp-fe-lol-game-in-progress {
+  background-image: unset !important;
+  background-color: unset !important;
+}
+
+.clash-tab-team-background,
+.clash-tab-bracket-background,
+.tournament-scouting,
+.clash-missed-lockin-modal,
+.clash-root-background-landing,
+.clash-root-background {
+  background-image: none !important;
+}
+
+div[data-screen-name=rcp-fe-lol-home] .rcp-fe-lol-home-sub-nav {
+  margin-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgba(0, 0, 0, 0.6784313725);
+  border-radius: 10px;
+  border: 2px solid var(--default-color, #cdbe91);
+}
+
+.webm-bottom-buttons-container {
+  display: flex;
+  bottom: 9px;
+  left: 20px;
+  position: absolute;
+}
+
+#pause-bg {
+  position: relative;
+  border: 2px solid #8c8263;
+  border-radius: 50%;
+  width: 21px;
+  background-color: black;
+  height: 21px;
+  cursor: pointer;
+}
+
+#pause-bg:hover {
+  filter: brightness(1.3) hue-rotate(263deg) saturate(0.4);
+}
+
+.pause-bg-icon {
+  width: 17px;
+  margin-left: 2px;
+  margin-top: 2px;
+}
+
+#next-bg {
+  position: relative;
+  width: 21px;
+  height: 21px;
+  cursor: pointer;
+}
+
+.next-bg-icon {
+  width: 25px;
+  margin-left: 0px;
+  margin-top: -0.4px;
+}
+
+.next-bg-icon:hover {
+  filter: hue-rotate(0deg) drop-shadow(2px 4px 6px pink);
+}
+
+#pause-audio {
+  border: 2px solid #8c8263;
+  border-radius: 50%;
+  width: 21px;
+  background-color: black;
+  height: 21px;
+  cursor: pointer;
+  display: block;
+  margin-right: 6px;
+}
+
+.pause-audio-icon {
+  width: 13px;
+  margin-left: 4px;
+  margin-top: 4px;
+}
+
+#pause-audio:hover {
+  filter: brightness(1.3) hue-rotate(263deg) saturate(0.4);
+}
+
+.webm-hidden {
+  opacity: 0 !important;
+}
+
+.vng-age-rating.ember-view {
+  display: none;
+}
+
+div[class="clash-aram-intro-modal ember-view"] {
+  display: none;
+}
+
+:host .parties-status-card.open {
+  filter: hue-rotate(240deg);
+}
+
+.rcp-fe-lol-profiles-main > .component-factory-application > .ember-view > .style-profile-backdrop-component.ember-view > .style-profile-backdrop-container > .style-profile-masked-image {
+  display: none;
+}
+
+div[class=store-backdrop] {
+  background: none !important;
+}
+
+div[class=background] {
+  background: none !important;
+}
+
+div[class=ranked-intro-background] {
+  display: none;
+}
+
+div[class=stats-backdrop] {
+  background: none !important;
+}
+
+.loot-backdrop.background-static {
+  background: none !important;
+}
+
+.background-vignette-container.focussed.static.visible {
+  display: none;
+}
+
+/* Thanh thông báo */
+.navigation-status-ticker-content-no-link {
+  background-color: rgba(248, 169, 201, 0.726);
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  color: rgba(22, 22, 22, 0.626);
+}
+
+/*# sourceMappingURL=MinimalistTheme.global.css.map */

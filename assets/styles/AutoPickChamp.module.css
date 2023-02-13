@@ -1,0 +1,10 @@
+.dropdownContainer {
+  position: absolute;
+  top: -80px;
+}
+
+.row {
+  flex-direction: row;
+}
+
+/*# sourceMappingURL=AutoPickChamp.module.css.map */
