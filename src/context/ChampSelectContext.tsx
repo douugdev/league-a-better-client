@@ -37,9 +37,6 @@ export const ChampSelectProvider = ({
   );
 
   const getOwnBanActions = () => {
-    if (process.env.DEBUG === 'true' && !currentSession?.actions) {
-      console.info('[DEBUG] Trying to get a ban action on empty session.');
-    }
     return (
       currentSession?.actions
         .flat()
@@ -51,9 +48,6 @@ export const ChampSelectProvider = ({
     );
   };
   const getOwnPickActions = () => {
-    if (process.env.DEBUG === 'true' && !currentSession?.actions) {
-      console.info('[DEBUG] Trying to get a pick action on empty session.');
-    }
     return (
       currentSession?.actions
         .flat()
