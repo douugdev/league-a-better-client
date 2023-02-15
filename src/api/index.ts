@@ -14,13 +14,11 @@ export const subscribeToEndpoint = <Data = any>(
     'link[rel="riot:plugins:websocket"]'
   )!.href;
   const ws = new WebSocket(uri, 'wamp');
-  const eventName = endpoint.replace(/\//g, '_');
 
-  if (endpoint && process.env.DEBUG) {
-    console.log(`[WEBSOCKET] Subscribed to OnJsonApiEvent${eventName}`);
-  }
-
-  ws.onopen = () => ws.send(JSON.stringify([5, 'OnJsonApiEvent' + eventName]));
+  ws.onopen = () =>
+    ws.send(
+      JSON.stringify([5, 'OnJsonApiEvent' + endpoint.replace(/\//g, '_')])
+    );
   ws.onmessage = (received) => {
     const websocketMessage = JSON.parse(received.data) as any;
     if (
@@ -42,16 +40,11 @@ export const subscribeToEndpoint = <Data = any>(
         data: message.data,
       });
     } else {
-      console.error(`[WEBSOCKET] Invalid message: ${received.data}`);
+      console.error('WEBSOCKET ERR: Invalid message');
     }
   };
 
-  return () => {
-    ws.close(1000);
-    if (endpoint && process.env.DEBUG) {
-      console.log(`[WEBSOCKET] Unsubscribed to OnJsonApiEvent${eventName}`);
-    }
-  };
+  return () => ws.close();
 };
 
 export const matchmakingReadyAccept = async () => {

@@ -27,7 +27,7 @@ const HideFriendsList = () => {
   return (
     <>
       {createPortal(
-        <span className="action-bar-button ember-view" onClick={handleChange}>
+        <span class="action-bar-button ember-view" onClick={handleChange}>
           <div className={isHidden ? styles.iconHidden : styles.icon} />
         </span>,
         document.querySelector('.actions-bar') ?? document.head

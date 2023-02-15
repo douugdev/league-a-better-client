@@ -12,7 +12,7 @@ const Dodge = () => {
 
   return createPortal(
     <>
-      <div className="quit-button" onClick={handleDodge}>
+      <div class="quit-button" onClick={handleDodge}>
         <lol-uikit-flat-button>Sair</lol-uikit-flat-button>
       </div>
     </>,

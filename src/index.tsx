@@ -6,11 +6,11 @@ import AutoPickChamp from './Components/AutoPickChamp';
 import MinimalistTheme from './Components/MinimalistTheme';
 import Dodge from './Components/Dodge';
 import HideFriendsList from './Components/HideFriendsList';
-import LobbySettings from './Components/LobbySettings';
 
 // Add components that need an element not readily available at launch here
 const PortalComponents = [
-  LobbySettings,
+  AutoReady,
+  AutoPickChamp,
   MinimalistTheme,
   Dodge,
   HideFriendsList,
@@ -25,6 +25,9 @@ const onInit = async () => {
         const comp = document.querySelector(Component.on);
         if (!!comp && !document.getElementById(Component.name)) {
           await render(<App />, root()!);
+          if (process.env.DEBUG === 'true') {
+            console.info(`LOADED COMPONENT: ${Component.name}`);
+          }
         }
       }
     });
