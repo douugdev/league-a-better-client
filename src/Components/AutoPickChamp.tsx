@@ -1,5 +1,12 @@
-import { h } from 'preact';
-import { createPortal, useEffect, useState } from 'preact/compat';
+import { JSX, createRef, h } from 'preact';
+import {
+  ChangeEvent,
+  TargetedEvent,
+  createPortal,
+  useEffect,
+  useRef,
+  useState,
+} from 'preact/compat';
 import {
   getAllGridChampions,
   getDataChampions,
@@ -78,20 +85,73 @@ const AutoPickChamp = () => {
     }
   }, [availableChampions]);
 
+  const [search, setSearch] = useState('');
+
+  const updateSearch = (e: TargetedEvent) => {
+    const text = (e.target as HTMLInputElement).value;
+    setSearch(text);
+  };
+
+  const [open, setOpen] = useState(false);
+  const dropdownRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    const classes = Array.from(dropdownRef.current?.classList || []);
+    if (classes.find((c) => c === 'active')) {
+      setOpen(true);
+    } else {
+      setOpen(false);
+    }
+  }, [dropdownRef]);
+
   return (
     <div>
       <span className="split-panel-header-title active">
         Auto Champ Select:
       </span>
+
       <lol-uikit-framed-dropdown
+        ref={dropdownRef}
         direction="upward"
         className="custom-bot-champions-dropdown"
         tabIndex={0}
       >
-        {availableChampions.map(renderChampion)}
+        <div slot="lol-uikit-dropdown-option">
+          <lol-uikit-flat-input>
+            <input
+              type="search"
+              placeholder="Buscar"
+              maxLength={50}
+              class="collection-search-text"
+              onInput={(e) => updateSearch(e)}
+            />
+          </lol-uikit-flat-input>
+        </div>
+        {availableChampions
+          .filter((champ) =>
+            champ.name.toLowerCase().includes(search.toLowerCase())
+          )
+          .map(renderChampion)}
       </lol-uikit-framed-dropdown>
     </div>
   );
 };
 
 export default AutoPickChamp;
+
+/** align-items: center;
+    border-top: thin solid #1f2123;
+    color: #cdbe91;
+    cursor: pointer;
+    display: block;
+    min-height: 30px;
+    line-height: var(--dropdown-option-framed-line-height);
+    margin: 0;
+    overflow: hidden;
+    padding: 2px 9px 2px 7px;
+    position: relative;
+    text-overflow: ellipsis;
+    white-space: var(--dropdown-option-framed-white-space);
+    overflow-wrap: var(--dropdown-option-framed-overflow-wrap);
+}
+ */

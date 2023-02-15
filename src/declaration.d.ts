@@ -27,6 +27,7 @@ declare module 'preact' {
         priority: number;
         active: boolean;
       };
+      "lol-uikit-flat-input": HTMLAttributes<HTMLInputElement>
     }
   }
 }
