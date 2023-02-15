@@ -48,27 +48,27 @@ const SettingsMenu = () => {
 
   return createPortal(
     <div
-      class="modal"
+      className="modal"
       style="position: absolute; inset: 0px; z-index: 8500"
       hidden={!visible || undefined}
     >
       <lol-uikit-full-page-backdrop
-        class="backdrop"
+        className="backdrop"
         style="display: flex; align-items: center; justify-content: center; position: absolute; inset: 0px"
       />
       <div
-        class="dialog-confirm"
+        className="dialog-confirm"
         style="display: flex; align-items: center; justify-content: center; position: absolute; inset: 0px"
       >
         <lol-uikit-dialog-frame
           ref={frame}
-          class="dialog-frame"
+          className="dialog-frame"
           orientation="bottom"
           close-button="false"
         >
-          <div class="dialog-content">
+          <div className="dialog-content">
             <lol-uikit-content-block
-              class="app-controls-exit-dialog"
+              className="app-controls-exit-dialog"
               type="dialog-medium"
               style="position: relative; overflow: hidden"
             >
@@ -86,7 +86,7 @@ const SettingsMenu = () => {
                   <h4 style="padding: 6px 0">A Better Client</h4>
                   <p>v{pkg.version}</p>
                 </div>
-                <hr class="heading-spacer" />
+                <hr className="heading-spacer" />
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 12px">
                   <lol-uikit-flat-button-secondary
                     style="display:inline-block; width: 180px"
@@ -107,10 +107,10 @@ const SettingsMenu = () => {
                     Open plugins folder
                   </lol-uikit-flat-button-secondary>
                 </div>
-                <hr class="heading-spacer" />
+                <hr className="heading-spacer" />
                 <p
                   style="padding: 20px 0"
-                  class="lol-settings-code-of-conduct-link lol-settings-window-size-text"
+                  className="lol-settings-code-of-conduct-link lol-settings-window-size-text"
                 >
                   <a href="https://leagueloader.app" target="_blank">
                     leagueloader.app
@@ -122,14 +122,14 @@ const SettingsMenu = () => {
           <lol-uikit-flat-button-group type="dialog-frame">
             <lol-uikit-flat-button
               tabIndex={1}
-              class="button-accept"
+              className="button-accept"
               onClick={() => showDefaultSettings()}
             >
               Open Settings
             </lol-uikit-flat-button>
             <lol-uikit-flat-button
               tabIndex={2}
-              class="button-decline"
+              className="button-decline"
               onClick={() => show(false)}
             >
               Close
