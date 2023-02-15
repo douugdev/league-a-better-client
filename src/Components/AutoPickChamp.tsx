@@ -17,13 +17,14 @@ import type { ApiGridChampion } from '../api/types';
 import { useChampSelect } from '../context/ChampSelectContext';
 import styles from '../assets/styles/AutoPickChamp.module.scss';
 
+export const on = '.invite-info-panel-container';
+
 const AutoPickChamp = () => {
   const [availableChampions, setAvailableChampions] = useState<
     ApiGridChampion[]
   >([]);
   const [autoPickChampId, setAutoPickChampId] = useState<number>(-1);
   const { getOwnPickActions } = useChampSelect();
-
   const myPickActions = getOwnPickActions();
 
   const handleSelectChampion = (champId: number) => {
@@ -104,8 +105,8 @@ const AutoPickChamp = () => {
     }
   }, [dropdownRef]);
 
-  return (
-    <div>
+  return createPortal(
+    <div className={styles.dropdownContainer}>
       <span className="split-panel-header-title active">
         Auto Champ Select:
       </span>
@@ -133,9 +134,12 @@ const AutoPickChamp = () => {
           )
           .map(renderChampion)}
       </lol-uikit-framed-dropdown>
-    </div>
+    </div>,
+    document.querySelector(on) ?? document.head
   );
 };
+
+AutoPickChamp.on = on;
 
 export default AutoPickChamp;
 

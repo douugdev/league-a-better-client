@@ -5,10 +5,11 @@ import { matchmakingReadyAccept, subscribeToEndpoint } from '../api';
 import { useSettings } from '../context/SettingsContext';
 import { GamePhase, ParsedWebSocketMessage } from '../api/types';
 
+export const on = '.invite-info-panel-container';
+
 const AutoReady = () => {
   const [hasAccepted, setHasAccepted] = useState(false);
   const { autoAccept, setAutoAccept } = useSettings();
-  const [unsubscribe, setUnsubscribe] = useState<(() => void) | null>(null);
 
   const handleChange = () => {
     setAutoAccept((prev) => !prev);
@@ -16,7 +17,7 @@ const AutoReady = () => {
 
   const autoAcceptCallback = useCallback(
     async (message: ParsedWebSocketMessage<GamePhase>) => {
-      if (message.data === 'ReadyCheck' && !hasAccepted) {
+      if (message.data === 'ReadyCheck' && autoAccept && !hasAccepted) {
         matchmakingReadyAccept();
         setHasAccepted(true);
       } else if (message.data !== 'ReadyCheck') {
@@ -27,20 +28,18 @@ const AutoReady = () => {
   );
 
   useEffect(() => {
-    if (autoAccept && unsubscribe === null) {
-      const currentUnsubscribe = subscribeToEndpoint(
-        '/lol-gameflow/v1/gameflow-phase',
-        autoAcceptCallback
-      );
-      setUnsubscribe((_) => currentUnsubscribe);
-    } else if (!autoAccept && unsubscribe) {
-      unsubscribe?.();
-      setUnsubscribe(null);
-    }
-  }, [autoAcceptCallback, autoAccept, unsubscribe]);
+    const unsubscribe = subscribeToEndpoint(
+      '/lol-gameflow/v1/gameflow-phase',
+      autoAcceptCallback
+    );
+    // return () => unsubscribe();
+  }, [autoAcceptCallback]);
 
-  return (
-    <lol-uikit-flat-checkbox>
+  return createPortal(
+    <lol-uikit-flat-checkbox
+      style={{ position: 'absolute', top: '-16px' }}
+      // className="collection-ownership-filter"
+    >
       <input
         onChange={handleChange}
         checked={autoAccept}
@@ -48,13 +47,16 @@ const AutoReady = () => {
         name="isUnowned"
         type="checkbox"
         id="ember12382"
-        className="ember-checkbox ember-view"
+        class="ember-checkbox ember-view"
       />
-      <label slot="label" className="collection-checkbox-label">
+      <label slot="label" class="collection-checkbox-label">
         Auto Ready
       </label>
-    </lol-uikit-flat-checkbox>
+    </lol-uikit-flat-checkbox>,
+    document.querySelector(on) ?? document.head
   );
 };
+
+AutoReady.on = on;
 
 export default AutoReady;
