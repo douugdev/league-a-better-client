@@ -6,8 +6,8 @@
 //   return (
 //     <>
 //       <lol-uikit-section-controller animation="crossfade" selected-item="lol">
-//         <lol-uikit-section section-id="lol" class="visible">
-//           <div id="lol" class="wrapper">
+//         <lol-uikit-section section-id="lol" className="visible">
+//           <div id="lol" className="wrapper">
 //             <span className={`currency-be-component`}>AAAAAAAA</span>
 //             <img
 //               src={'//assets/img/coffee.jpg'}
@@ -18,7 +18,7 @@
 //       </lol-uikit-section-controller>
 //       <lol-uikit-navigation-bar
 //         type="nav-bar-secondary"
-//         class="rcp-fe-lol-home-sub-nav"
+//         className="rcp-fe-lol-home-sub-nav"
 //         selectedindex={0}
 //       >
 //         <lol-uikit-navigation-item item-id="lol" priority={10} active={true}>

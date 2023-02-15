@@ -45,9 +45,6 @@
     "style-loader": "^3.3.1",
     "webpack-dev-server": "^4.11.1"
   },
-  "side-effects": [
-    "./src/assets/**/*"
-  ],
   "scripts": {
     "watchStyles": "sass --watch src/assets:assets/",
     "watch": "webpack -w --config webpack.dev.js",

@@ -138,11 +138,6 @@ lol-uikit-navigation-item > .section::after {
   background: transparent !important;
 }
 
-.parties-background.ember-view .lol-uikit-background-switcher-image {
-  filter: invert(0.2) blur(30px);
-  opacity: 0.4;
-}
-
 .parties-background {
   background: linear-gradient(
     to bottom,
