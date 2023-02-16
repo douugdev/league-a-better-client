@@ -48,7 +48,7 @@
   "scripts": {
     "watchStyles": "sass --watch src/assets:assets/",
     "watch": "webpack -w --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
+    "build": "webpack --config webpack.prod.js && sass src/assets:assets/",
     "dev": "concurrently \"yarn watch\" \"yarn watchStyles\""
   }
 }

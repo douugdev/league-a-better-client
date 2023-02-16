@@ -10,9 +10,7 @@ export const subscribeToEndpoint = <Data = any>(
   endpoint: string,
   callback: (ev: ParsedWebSocketMessage<Data>) => void
 ) => {
-  const uri = document.querySelector<HTMLLinkElement>(
-    'link[rel="riot:plugins:websocket"]'
-  )!.href;
+  const uri = document.querySelector<HTMLLinkElement>('link[rel="riot:plugins:websocket"]')!.href;
   const ws = new WebSocket(uri, 'wamp');
   const eventName = endpoint.replace(/\//g, '_');
 
@@ -23,11 +21,7 @@ export const subscribeToEndpoint = <Data = any>(
   ws.onopen = () => ws.send(JSON.stringify([5, 'OnJsonApiEvent' + eventName]));
   ws.onmessage = (received) => {
     const websocketMessage = JSON.parse(received.data) as any;
-    if (
-      Array.isArray(websocketMessage) &&
-      websocketMessage.length === 3 &&
-      typeof websocketMessage[2] !== 'string'
-    ) {
+    if (Array.isArray(websocketMessage) && websocketMessage.length === 3 && typeof websocketMessage[2] !== 'string') {
       const [code, event, message] = websocketMessage as [
         number,
         string,
@@ -58,38 +52,24 @@ export const matchmakingReadyAccept = async () => {
   await axios.post('/lol-matchmaking/v1/ready-check/accept');
 };
 
-export const matchmakingChampionIntent = async (
-  actionId: number,
-  championId: number
-) => {
+export const matchmakingChampionIntent = async (actionId: number, championId: number) => {
   await axios.patch(`lol-champ-select/v1/session/actions/${actionId} `, {
     championId,
   });
 };
-export const matchmakingChampionLock = async (
-  actionId: number,
-  championId: number
-) => {
+export const matchmakingChampionLock = async (actionId: number, championId: number) => {
   await axios.patch(`lol-champ-select/v1/session/actions/${actionId} `, {
     completed: true,
     championId,
   });
 };
 
-export const getAllGridChampions = async () => {
-  return (
-    await axios.get<ApiGridChampion[]>(
-      '/lol-game-data/assets/v1/champion-summary.json'
-    )
-  ).data;
+export const getOwnedChampions = async () => {
+  return (await axios.get<ApiGridChampion[]>('/lol-champions/v1/owned-champions-minimal')).data;
 };
 
 export const getDataChampions = async () => {
-  return (
-    await axios.get<ApiGridChampion[]>(
-      '/lol-game-data/assets/v1/champion-summary.json'
-    )
-  ).data;
+  return (await axios.get<ApiGridChampion[]>('/lol-game-data/assets/v1/champion-summary.json')).data;
 };
 
 export const dodgeQueue = async () => {

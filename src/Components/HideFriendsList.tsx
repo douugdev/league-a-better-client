@@ -30,7 +30,7 @@ const HideFriendsList = () => {
         <span className="action-bar-button ember-view" onClick={handleChange}>
           <div className={isHidden ? styles.iconHidden : styles.icon} />
         </span>,
-        document.querySelector('.actions-bar') ?? document.head
+        document.querySelector('.actions-bar .buttons') ?? document.head
       )}
     </>
   );
