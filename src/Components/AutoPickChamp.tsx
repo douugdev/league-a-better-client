@@ -1,19 +1,22 @@
 import { h } from 'preact';
-import { TargetedEvent, useEffect, useRef, useState } from 'preact/compat';
-import { getOwnedChampions, getDataChampions, matchmakingChampionIntent, matchmakingChampionLock } from '../api';
-import type { ApiGridChampion } from '../api/types';
+import { TargetedEvent, useCallback, useEffect, useRef, useState } from 'preact/compat';
+import { getOwnedChampions, getAllChampions, matchmakingChampionIntent, matchmakingChampionLock } from '../api';
+import type { SimplifiedChampion } from '../api/types';
 import { useChampSelect } from '../context/ChampSelectContext';
 import styles from '../assets/styles/AutoPickChamp.module.scss';
 import { useSettings } from '../context/SettingsContext';
+import { emptyChampion } from '../api/data';
+import { useLobby } from '../context/LobbyContext';
 
 const AutoPickChamp = () => {
   const dropdownRef = useRef<HTMLButtonElement | null>(null);
 
   const [picked, setPicked] = useState<boolean>(false);
   const [intended, setIntended] = useState<boolean>(false);
-  const [availableChampions, setAvailableChampions] = useState<ApiGridChampion[]>([]);
+  const [availableChampions, setAvailableChampions] = useState<SimplifiedChampion[]>([]);
   const [search, setSearch] = useState('');
   const { autoPickChampionId, setAutoPickChampionId } = useSettings();
+  const { currentLobby } = useLobby();
   const { getOwnPickActions } = useChampSelect();
   const myPickActions = getOwnPickActions();
 
@@ -22,7 +25,7 @@ const AutoPickChamp = () => {
     setAutoPickChampionId(champId);
   };
 
-  const renderChampion = (champion: ApiGridChampion) => {
+  const renderChampion = (champion: SimplifiedChampion) => {
     return (
       <lol-uikit-dropdown-option
         selected={champion.id === autoPickChampionId ? true : undefined}
@@ -43,36 +46,43 @@ const AutoPickChamp = () => {
     );
   };
 
-  useEffect(() => {
-    (async () => {
-      if (myPickActions && myPickActions[0]) {
-        // Get the first pick action
-        const firstPickAction = myPickActions[0];
+  const pickChampion = useCallback(async () => {
+    if (autoPickChampionId === -1) {
+      return;
+    }
 
-        if (firstPickAction.isInProgress && !picked) {
-          try {
-            await matchmakingChampionLock(firstPickAction.id, autoPickChampionId);
-          } finally {
-            setPicked(true);
-          }
-        } else if (!intended) {
-          try {
-            await matchmakingChampionIntent(firstPickAction.id, autoPickChampionId);
-          } finally {
-            setIntended(true);
-          }
-        }
+    if (!myPickActions || !myPickActions[0]) {
+      return;
+    }
+
+    // Get the first pick action
+    const firstPickAction = myPickActions[0];
+
+    if (firstPickAction.isInProgress && !picked) {
+      try {
+        await matchmakingChampionLock(firstPickAction.id, autoPickChampionId);
+      } finally {
+        setPicked(true);
       }
-    })();
+    } else if (!intended) {
+      try {
+        await matchmakingChampionIntent(firstPickAction.id, autoPickChampionId);
+      } finally {
+        setIntended(true);
+      }
+    }
   }, [myPickActions, autoPickChampionId, intended]);
+
+  useEffect(() => {
+    pickChampion();
+  }, [pickChampion]);
 
   useEffect(() => {
     if (availableChampions.length === 0) {
       (async () => {
-        const allGridChampions = (await getOwnedChampions()) ?? (await getDataChampions());
-        const [emptyChamp, ...rest] = allGridChampions;
+        const allGridChampions = await getOwnedChampions();
 
-        setAvailableChampions([emptyChamp, ...rest.sort((a, b) => b.masteryPoints - a.masteryPoints)]);
+        setAvailableChampions([emptyChampion, ...allGridChampions.sort((a, b) => b.masteryPoints - a.masteryPoints)]);
       })();
     }
   }, [availableChampions]);
@@ -96,7 +106,7 @@ const AutoPickChamp = () => {
           <lol-uikit-flat-input>
             <input
               type="search"
-              placeholder="Buscar"
+              placeholder="Search"
               maxLength={50}
               class="collection-search-text"
               onInput={(e) => updateSearch(e)}

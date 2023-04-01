@@ -1,7 +1,9 @@
-# Riot Loader
-*.dll
-*.exe
+# Pengu Loader
+/*.dll
+/*.exe
 config.cfg
+/datastore
+/config
 
 # Distribution
 /plugins

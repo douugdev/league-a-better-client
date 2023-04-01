@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ApiGridChampion, ParsedWebSocketMessage } from './types';
+import { Champion, ParsedWebSocketMessage, SimplifiedChampion } from './types';
 
 /**
  * Subscribe to a specific endpoint, and trigger callback function when that endpoint is called
@@ -65,11 +65,11 @@ export const matchmakingChampionLock = async (actionId: number, championId: numb
 };
 
 export const getOwnedChampions = async () => {
-  return (await axios.get<ApiGridChampion[]>('/lol-champions/v1/owned-champions-minimal')).data;
+  return (await axios.get<Champion[]>('/lol-champions/v1/owned-champions-minimal')).data;
 };
 
-export const getDataChampions = async () => {
-  return (await axios.get<ApiGridChampion[]>('/lol-game-data/assets/v1/champion-summary.json')).data;
+export const getAllChampions = async () => {
+  return (await axios.get<SimplifiedChampion[]>('/lol-game-data/assets/v1/champion-summary.json')).data;
 };
 
 export const dodgeQueue = async () => {

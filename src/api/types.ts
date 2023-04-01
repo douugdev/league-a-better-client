@@ -1,4 +1,12 @@
-export interface ApiGridChampion {
+export interface SimplifiedChampion {
+  id: number;
+  name: string;
+  alias?: string;
+  squarePortraitPath: string;
+  roles: any[];
+}
+
+export interface Champion {
   disabled: boolean;
   freeToPlay: boolean;
   freeToPlayForQueue: boolean;
@@ -174,3 +182,81 @@ export interface ParsedWebSocketMessage<Data = any> {
   eventType: 'Delete' | 'Update' | 'Create';
   uri: string;
 }
+
+export type Position = 'BOTTOM' | 'MIDDLE' | 'JUNGLE';
+
+export interface LobbyMember {
+  allowedChangeActivity: boolean;
+  allowedInviteOthers: boolean;
+  allowedKickOthers: boolean;
+  allowedStartActivity: boolean;
+  allowedToggleInvite: boolean;
+  autoFillEligible: boolean;
+  autoFillProtectedForPromos: boolean;
+  autoFillProtectedForSoloing: boolean;
+  autoFillProtectedForStreaking: boolean;
+  botChampionId: number;
+  botDifficulty: 'NONE' | 'HARD';
+  botId: string;
+  firstPositionPreference: Position;
+  isBot: boolean;
+  isLeader: boolean;
+  isSpectator: boolean;
+  puuid: 'd455a6df-896e-5e14-8c0c-de6c6d87e97e';
+  ready: boolean;
+  secondPositionPreference: Position;
+  showGhostedBanner: boolean;
+  summonerIconId: number;
+  summonerId: number;
+  summonerInternalName: string;
+  summonerLevel: number;
+  summonerName: string;
+  teamId: number;
+}
+
+export interface Lobby {
+  canStartActivity: boolean;
+  chatRoomId: '2c7feec1-5940-4809-a6f3-d72149bc0004';
+  chatRoomKey: '2c7feec1-5940-4809-a6f3-d72149bc0004';
+  gameConfig: {
+    allowablePremadeSizes: number[];
+    customLobbyName: string;
+    customMutatorName: string;
+    customRewardsDisabledReasons: string[];
+    customSpectatorPolicy: 'NotAllowed';
+    customSpectators: unknown[];
+    customTeam100: unknown[];
+    customTeam200: unknown[];
+    gameMode: 'CLASSIC' | 'ARAM' | 'URF';
+    isCustom: boolean;
+    isLobbyFull: boolean;
+    isTeamBuilderManaged: boolean;
+    mapId: number; // 11 is Summoner's Rift
+    maxHumanPlayers: number;
+    maxLobbySize: number;
+    maxTeamSize: number;
+    pickType: string;
+    premadeSizeAllowed: boolean;
+    queueId: 420 | 440 | 840; // 420 is soloQ, 440 is flex and 840 is coopai
+    showPositionSelector: boolean;
+  };
+  invitations: {
+    invitationId: string;
+    invitationType: 'invalid';
+    state: 'Accepted' | 'Denied';
+    timestamp: string;
+    toSummonerId: number;
+    toSummonerName: 'string';
+  }[];
+  localMember: LobbyMember;
+  members: LobbyMember[];
+  multiUserChatId: string;
+  multiUserChatJWT: string;
+  multiUserChatPassword: string;
+  partyId: string;
+  partyType: 'closed' | 'open';
+  restrictions: [];
+  scarcePositions: Position[];
+  warnings: [];
+}
+// "uri": "/lol-lobby/v2/lobby"
